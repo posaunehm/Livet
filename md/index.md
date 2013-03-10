@@ -3,10 +3,10 @@
 ![image](http://ugaya40.net/wp-content/uploads/LivetLogo_thumb.png)
 
 ##What's Livet?
-Livet is a MVVM (Model-View-ViewModel) infrastructure for WPF4/4.5 running on .NET Framework 4(Client Profiler) or higher. distributed under [zlib/libpng license](http://opensource.org/licenses/Zlib). 
+Livet is a MVVM (Model-View-ViewModel) infrastructure for WPF4/4.5 running on .NET Framework 4(Client Profile) or higher. distributed under [zlib/libpng license](http://opensource.org/licenses/Zlib). 
 
 ##Installation
-Livet provides project templates, item templates and code snippet for Visual Studio 2010/2012, as well as Livet main binary. You can install all of them via Addin-Manager of Visual Studio.
+Livet provides project templates, item templates and code snippets for Visual Studio 2010/2012 as well as Livet main binary. You can install all of them via Visual Studio Extension Manager.
 
 ![image](http://ugaya40.net/wp-content/uploads/image_thumb1.png)
 
@@ -14,10 +14,10 @@ Or you can install via Nuget.
 
 	PM> Install-Package LivetCask
 
-However, Nuget install main binary only. Templates and snippets are also key components for Livet's productivity, so we strongry recommend using Addin-Manager, at least once. 
+However, Nuget package contains main binary only. Templates and snippets are also key components for the productivity of Livet, so we strongry recommend to use Extension Manager. 
 
 
-> If you use Express Edition(VS2010/2012), you can install Livet using [msi installer](http://visualstudiogallery.msdn.microsoft.com/ee198b62-fa45-496c-9c1c-e8f63b43f677?SRC=VSIDE), instead of Addin-Manager.
+> If you use Express Edition(VS2010/2012), you can install Livet using [msi installer](http://visualstudiogallery.msdn.microsoft.com/ee198b62-fa45-496c-9c1c-e8f63b43f677?SRC=VSIDE), instead of Extension Manager.
 
 ##Features
 
