@@ -1,0 +1,4 @@
+#!/bin/sh 
+jekyll
+cp ./_site/index.html ../
+

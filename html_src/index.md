@@ -1,3 +1,9 @@
+---
+layout: layout
+title: Livet
+---
+
+
 #Livet
 
 ![image](http://ugaya40.net/wp-content/uploads/LivetLogo_thumb.png)
@@ -133,7 +139,8 @@ ReactiveExtensionsと併用する場合には、RxのCompositeDisposableをLivet
 <!--
 DispatcherCollectionは、既存の変更通知コレクションをコンストラクタの引数にとり、その変更通知を指定されたDispatcher上で行うコレクションです。ReadOnlyDispatcherCollection、DispatcherCollectionをコンストラクタの引数にとる読み取り専用ラッパーとなります。
 -->
-####ViewModelHelper.CreateReadOnlyDispatcherCollection<TModel,TViewModel>
+
+#### ViewModelHelper.CreateReadOnlyDispatcherCollection&lt;TModel,TViewModel&gt;
 
 <!--
 CreateReadOnlyDispatcherCollectionを使用すると、Modelの変更通知コレクションを指定し、そのModelのコレクションの変更と連動するReadOnlyDispatcherCollectionを生成できます。Func<TModel,TViewModel>を指定してTModel型とTViewModel型の相互変換を行います。

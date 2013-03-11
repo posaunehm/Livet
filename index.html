@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Livet by posaunehm</title>
+    <title> Livet</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -39,90 +39,162 @@
         <ul></ul>
       </nav>
       <section>
-        <h1>Livet</h1>
+	<h1 id='livet'>Livet</h1>
 
-<p><img src="http://ugaya40.net/wp-content/uploads/LivetLogo_thumb.png" alt="image" /></p>
+<p><img alt='image' src='http://ugaya40.net/wp-content/uploads/LivetLogo_thumb.png' /></p>
 
-<h2>What's Livet?</h2>
+<h2 id='whats_livet'>What&#8217;s Livet?</h2>
 
-<p>Livet is a MVVM (Model-View-ViewModel) infrastructure for WPF4/4.5 running on .NET Framework 4(Client Profile) or higher. distributed under <a href="http://opensource.org/licenses/Zlib">zlib/libpng license</a>.</p>
+<p>Livet is a MVVM (Model-View-ViewModel) infrastructure for WPF4/4.5 running on .NET Framework 4(Client Profile) or higher. distributed under <a href='http://opensource.org/licenses/Zlib'>zlib/libpng license</a>.</p>
 
-<h2>Installation</h2>
+<h2 id='installation'>Installation</h2>
 
 <p>Livet provides project templates, item templates and code snippets for Visual Studio 2010/2012 as well as Livet main binary. You can install all of them via Visual Studio Extension Manager.</p>
 
-<p><img src="http://ugaya40.net/wp-content/uploads/image_thumb1.png" alt="image" /></p>
+<p><img alt='image' src='http://ugaya40.net/wp-content/uploads/image_thumb1.png' /></p>
 
 <p>Or you can install via Nuget.</p>
 
-<pre><code>PM&gt; Install-Package LivetCask
-</code></pre>
+<pre><code>PM&gt; Install-Package LivetCask</code></pre>
 
 <p>However, Nuget package contains main binary only. Templates and snippets are also key components for the productivity of Livet, so we strongry recommend to use Extension Manager.</p>
 
-<blockquote><p>If you use Express Edition(VS2010/2012), you can install Livet using <a href="http://visualstudiogallery.msdn.microsoft.com/ee198b62-fa45-496c-9c1c-e8f63b43f677?SRC=VSIDE">msi installer</a>, instead of Extension Manager.</p></blockquote>
+<blockquote>
+<p>If you use Express Edition(VS2010/2012), you can install Livet using <a href='http://visualstudiogallery.msdn.microsoft.com/ee198b62-fa45-496c-9c1c-e8f63b43f677?SRC=VSIDE'>msi installer</a>, instead of Extension Manager.</p>
+</blockquote>
 
-<h2>Features</h2>
+<h2 id='features'>Features</h2>
 
-<h3>1. Tool Support</h3>
+<h3 id='1_tool_support'>1. Tool Support</h3>
 
 <p>Livet greatly enhances Visual Studio and Blend.</p>
 
-<h4>Visual Studio 2010/2012 Support</h4>
+<h4 id='visual_studio_20102012_support'>Visual Studio 2010/2012 Support</h4>
+<!--WPFでは、プロジェクトの初期設定のコストも馬鹿になりません。また、ビヘイビア・トリガー・アクションの開発にも高いコストがかかります。
+
+Livetではプロジェクトテンプレート・アイテムテンプレートはもちろんの事、コードスニペットにて各種Commad、変更通知プロパティを提供しています。
+
+※コードスニペットのガイドは、プロジェクトテンプレート・アイテムテンプレートにあります)-->
+<h4 id='blendableblend_support'>Blendable(Blend Support)</h4>
+<!--LivetのView機能は極力Blendで作業しやすくなるように定義されています。
+-->
+<h3 id='2_view_support'>2. View Support</h3>
+<!--
+Livetの特徴② – View Support
+LivetのViewサポートの方針は簡単です。「バインドで解決できる箇所を増やす」- これのみです。
+
+WPFに限らずMVVMに限らずXAML系プラットフォームの特徴を活かしたViewサポートライブラリに出来る事はもともと基本的に「Viewコントロールの機能の補完」と「バインドで解決できる場所を増やす」のみです。LivetはMVVMインフラストラクチャですから「バインドで解決できる箇所を増やす」に注力するのは至極当然と言えます。-->
+<h4 id='make_unbindable_properties_bindable'>Make &#8220;Unbindable&#8221; Properties Bindable</h4>
+<!--コントロールのバインドできないプロパティ(依存関係プロパティではないプロパティ)の存在がViewModelでのViewの状態管理を苦しくする事は少なくありません。Livetではすべてのコントロールの、全ての(System.Windowsで始まる型のプロパティは除く)依存関係プロパティではないプロパティの単方向のバインドを可能にするビヘイビアとアクションを提供しています。
+
+xxxSetStateToSourceAction (xxxコントロールからバインドソースへ値を送信)
 
 
 
-<h4>Blendable(Blend Support)</h4>
+xxxSetStateToControlBehavior (バインドソースからxxxコントロールへ値を送信)
 
 
 
-<h3>2. View Support</h3>
+また、TextBoxとPasswordBoxに限っては本来バインドできないプロパティを双方向バインド可能にするビヘイビアを別途用意してあります。(TextBoxBindingSupportBehavior/PasswordBoxBindingSupportBehavior)。
+-->
+<h4 id='commandless_viewmodel__direct_method_binding'>Command-Less ViewModel - Direct Method Binding</h4>
+<!--一般的なMVVMのサンプルとされるコードでViewからViewModelに操作を要求したい時にICommandを介するのは何故か？。
+
+Viewの抽象化要件の上ではICommandはViewModelで意味的な操作の塊を提示するという意義があります。しかし多くの場合Viewの抽象要件は不要です。Viewの抽象化要件がなく、Modelが十分にリッチでViewModelが適切な厚さを持っている場合、ICommandはただメソッドを直接バインドできないがために存在します。
+
+その状況(つまり多くの状況)でMVVMを適切に考慮すれば、それはむしろICommandを使わない事になるはずです。
+
+LivetではICommandをサポートするすべてのView機能が同時にメソッドの直接バインディングをサポートしています。
+
+代表的なそれはLivetCallMethodActionです。BlendSDKのCallMethodActionは引数はとれませんが、LivetCallMethodActionは一つの引数を取れ(ICommandと同条件)、なおかつBlendSDKのCallMethodActionより高いパフォーマンスを誇ります。
+
+LivetCallMethodAction
 
 
 
-<h4>Make "Unbindable" Properties Bindable</h4>
+後述するメッセージ機構も含めてLivetにおいてはすべてのICommandを要求するような機能が同時にメソッドの直接バインディングをサポートしていますし、開発者が独自にビヘイビア・トリガー・アクションを作成する際もメソッドの直接バインディングが簡単に実装できるようにMethodBinderという機構を用意してあります。
+
+MethodBinderはLivetのすべてのメソッドバインディング機能で使用されています。MethodBinderをシンプルに使用するだけで、内部ではリフレクションと式木をフル活用して最大限メソッドキャッシュ管理の効率化をしてくれます。-->
+<h4 id='message_triggerable_action'>Message Triggerable Action</h4>
+<!--Livet.Behaviors.Messaging名前空間にはメッセージを受け取る事の出来るActionが用意されています。メッセージを受け取るActionは汎用性が高く、View上でEventTriggerなどから通常通りActionを起動する事も、ViewModel上のMessengerからMessageを送信して起動する事もできます。また戻り値のあるメッセージに対応したActionでは、Actionの結果が格納されたメッセージを引数にViewModelのメソッドやコマンドを呼び出すこともできます。
+
+PrismのInteractionRequestと似た機構ですが、決定的に異なるのはメッセージをView上でも定義可能なところとコールバックをコマンド呼び出しだけではなくメソッドでも可能な所です。View上でメッセージが定義できる事で実装上の制約からくるViewとViewModel間の不要な通信を抑える事ができます。
+
+メッセージを受け取るアクションは、通常通りのアクションとして使う事も、ViewModel→View方向の通知手段として使う事も出来ます。
+
+Clickイベントを切っ掛けに確認ダイアログを呼び出し、結果をViewModelのRequestCloseメソッドを呼び出すことで通知
 
 
 
-<h4>Command-Less ViewModel - Direct Method Binding</h4>
+ViewModelのMessengerから”Info”というキーでメッセージが飛んできた場合、情報ダイアログを表示
+
+View側
 
 
 
-<h4>Message Triggerable Action</h4>
+ViewModel側
 
 
 
-<h4>Generic EnumToBooleanConverter</h4>
+Livetに標準で定義されているメッセージとアクションの組み合わせには、確認・情報ダイアログ・ファイルダイアログ・画面遷移・フォルダーダイアログ(Windows API Code Packを参照しているためLivet.Extensionsという別アセンブリに定義)などがあります。
+
+Livet.Extensionsのフォルダー選択メッセージとアクションは、Vista以前と以降でTaskDialogとFolderBrowserDialogを自動で切り替えて使用できる
 
 
 
-<h4>Miscellaneous</h4>
+また、開発者が簡単にメッセージ対応アクション・メッセージを定義できるように、アイテムテンプレートに相互作用アクションとメッセージのテンプレートをそれぞれ用意してあります。-->
+<h4 id='generic_enumtobooleanconverter'>Generic EnumToBooleanConverter</h4>
+<!--
+View抽象化要件がない場合、Converterを使わなければならない箇所は限られては来ますが、しかしそれでもViewModelの使いまわしをしたい等の場合にIValueConverterを必要とする場合があります。LivetではSystem.Windows名前空間配下の全てのEnum型をbooleanと相互変換するIValueConverterを用意してあります。-->
+<h4 id='miscellaneous'>Miscellaneous</h4>
+<!--Blend SDKのDataTriggerは初期値に対応していません。その対処として初期値に対応するLivetDataTrigger、フォーカスを制御するSetFocusAction、Windowのクローズキャンセルや、クローズキャンセル可否判断をViewModelに委譲する事が出来るWindowCloseCancelBehavior、RoutedEventTrigger、DataContextがIDisposableであった場合DataContextをDisposeするDataContextDisposeActionなどを用意してあります。-->
+<h3 id='3_viewmodel_support'>3. ViewModel Support</h3>
+<!--LivetのViewModelサポート機能は、ViewとModelを極力PDSにそってデザインした場合に必然的に薄くなるViewModel、そしてその薄くなったViewModelが多くの開発シナリオで多用するであろう機能を前提にデザインしてあります。-->
+<h4 id='messenger_and_compositedisposable'>Messenger and CompositeDisposable</h4>
+<!--Messengerは前述のView機能 – メッセージを受け取るアクションに、ViewModelからメッセージを伝えるために用意されています。CompositeDisposableはIEnumerable<IDisposable>型で、ViewModelがDisposeされる際に同時に破棄したいリソースを格納するために使用されます。LivetのViewModel機能を使用する場合は、ViewModelと一緒に破棄したいリソースは基本的にViewModelのCompositeDisposableに格納する事になります。
+
+ReactiveExtensionsと併用する場合には、RxのCompositeDisposableをLivetのViewModelのCompositeDisposableに放り込んでやるとよいでしょう。-->
+<h4 id='dispatchercollection_and_readonlydispatchercollection'>DispatcherCollection and ReadOnlyDispatcherCollection</h4>
+<!--
+DispatcherCollectionは、既存の変更通知コレクションをコンストラクタの引数にとり、その変更通知を指定されたDispatcher上で行うコレクションです。ReadOnlyDispatcherCollection、DispatcherCollectionをコンストラクタの引数にとる読み取り専用ラッパーとなります。
+-->
+<h4 id='viewmodelhelpercreatereadonlydispatchercollectiontmodeltviewmodel'>ViewModelHelper.CreateReadOnlyDispatcherCollection&#60;TModel,TViewModel&#62;</h4>
+<!--
+CreateReadOnlyDispatcherCollectionを使用すると、Modelの変更通知コレクションを指定し、そのModelのコレクションの変更と連動するReadOnlyDispatcherCollectionを生成できます。Func<TModel,TViewModel>を指定してTModel型とTViewModel型の相互変換を行います。
 
 
 
-<h3>3. ViewModel Support</h3>
+CreateReadOnlyDispatcherCollectionを使用して生成されたTViewModelの要素がIDisposableであった場合、sourceコレクションからRemoveされた場合など要素削除時にはDisposeが呼ばれます。
+
+生成されたコレクションのDisposeを呼ぶことで、ソースコレクションとの連動は解除され、TViewModelがIDisposableであった場合は生成されたTViewModel型に対してDiposeが呼ばれます。-->
+<h4 id='propertychangedeventlistener_collectionchangedeventlistener'>PropertyChangedEventListener CollectionChangedEventListener</h4>
+<!--Modelのイベントを監視するのはViewModelの大きな役目です。しかしC#ではイベントハンドラの監視と解除を以下のような構文で行えません。
 
 
 
-<h4>Messenger and CompositeDisposable</h4>
+Livetでは特に煩雑になりがちなPropertyChangedイベントの監視と解除を容易にするため、PropertyChangedEventListenerクラスを用意してあります。
+
+様々な形でのPropertyChangedイベントハンドリング
 
 
 
-<h4>DispatcherCollection and ReadOnlyDispatcherCollection</h4>
+CollectionChangedEventListenerはそのコレクション変更通知版です。PropertyChangedEventListenerほど多機能ではありませんが似た様な事が可能です。
+
+また、汎用EventListenerとしてEventListenerを用意してあります。
 
 
 
-<h4>ViewModelHelper.CreateReadOnlyDispatcherCollection</h4>
+EventListenerやPropertyChangedEventListener/CollectionChangedEventListenerはIDisposable型であり、Disposeする事でハンドラの監視を解除します。
 
+ViewModelのCompositeDisposableに放り込んでおけば何も考えずともイベントハンドラの監視解除が行えます。-->
+<h3 id='3_model_support'>3. Model Support</h3>
+<!--ModelはMVVMの関心領域ではないため、Livetでも特に手厚いサポートはありません。
 
+しかし最低限の機能として、変更通知イベント基底クラスとなるNotificationObjectと、スレッドセーフな変更通知コレクションであるObservableSynchronizedCollectionを用意してあります。
 
-<h4>PropertyChangedEventListener CollectionChangedEventListener</h4>
+ObservableSyncronizedCollectionはMonitorベースのスレッドセーフなコレクションではなく、ReaderWriterLockSlimによるスレッドセーフなコレクションであり、読み書きが等しく複数スレッドから煩雑に行われるシナリオにおいて、パフォーマンスと変更通知のタイミングの偏りのバランスが良い様に設計されています。
 
-
-
-<h3>3. Model Support</h3>
-
-
+前述したViewModelのDispatcherCollectionはただのラッパーであるため、Modelでは通常のObservableCollectionとObservableSyncronizedCollectionを用途に応じて使い分け、それをViewModelでは同様に扱う事ができます。-->
       </section>
       <footer>
         <p>Project maintained by <a href="https://github.com/posaunehm">posaunehm</a></p>
