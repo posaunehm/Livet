@@ -32,18 +32,33 @@ Livet greatly enhances Visual Studio and Blend.
 
 #### Visual Studio 2010/2012 Support
 
-<!--WPFでは、プロジェクトの初期設定のコストも馬鹿になりません。また、ビヘイビア・トリガー・アクションの開発にも高いコストがかかります。
+<!--WPFでは、プロジェクトの初期設定のコストも馬鹿になりません。また、ビヘイビア・トリガー・アクションの開発にも高いコストがかかります。-->
 
-Livetではプロジェクトテンプレート・アイテムテンプレートはもちろんの事、コードスニペットにて各種Commad、変更通知プロパティを提供しています。
+In WPF Projects, it's very messy procedure to cofigure project settings, as well as to Behaviors, Triggers, and Actions.
 
+<!--
+Livetではプロジェクトテンプレート・アイテムテンプレートはもちろんの事、コードスニペットにて各種Commad、変更通知プロパティを提供しています。-->
+<!--
 ※コードスニペットのガイドは、プロジェクトテンプレート・アイテムテンプレートにあります)-->
+
+Livet make them much easier to provide project templates, and item templates. In addition, Livet also provides useful code snnipets for Commands and Notification Properties. (Snnipet documentations are included in templates.)
+
+
 
 
 #### Blendable(Blend Support)
 
 <!--LivetのView機能は極力Blendで作業しやすくなるように定義されています。
 -->
+
+Every view-support function is designed with usability on Blend. So you can use Livet functions very naturally on Blend.
+
 ### 2. View Support
+
+Livet has a very simple principle on view support functions; *To Make Unbindable bindable.* Thats it.
+
+For view support libraries on XAML platform, not limited in WPF or MVVM, can do only two things; "expanding or supplementing control functionality" and "enabling to add more functions for binding". Since Livet is not a control library but a MVVM infrastructure, it's very natural focusing the principle, "To Make Unbindable Bindable".
+
 <!--
 Livetの特徴② – View Support
 LivetのViewサポートの方針は簡単です。「バインドで解決できる箇所を増やす」- これのみです。
