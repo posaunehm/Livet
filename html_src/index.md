@@ -55,9 +55,9 @@ Every view-support function is designed with usability on Blend. So you can use 
 
 ### 2. View Support
 
-Livet has a very simple principle on view support functions; *To Make Unbindable bindable.* Thats it.
+Livet has a very simple principle on view support functions; *To Make Unbindable bindable.* That's it.
 
-For view support libraries on XAML platform, not limited in WPF or MVVM, can do only two things; "expanding or supplementing control functionality" and "enabling to add more functions for binding". Since Livet is not a control library but a MVVM infrastructure, it's very natural focusing the principle, "To Make Unbindable Bindable".
+For view support libraries on XAML platform, not limited in WPF or MVVM, can do only two things; "expanding or supplementing control functionality" and "enabling to add more functions for binding". Since Livet is not a control library but a MVVM infrastructure, it's very natural focusing the principle "To Make Unbindable Bindable".
 
 <!--
 Livetの特徴② – View Support
@@ -65,7 +65,16 @@ LivetのViewサポートの方針は簡単です。「バインドで解決で�
 
 WPFに限らずMVVMに限らずXAML系プラットフォームの特徴を活かしたViewサポートライブラリに出来る事はもともと基本的に「Viewコントロールの機能の補完」と「バインドで解決できる場所を増やす」のみです。LivetはMVVMインフラストラクチャですから「バインドで解決できる箇所を増やす」に注力するのは至極当然と言えます。-->
 
-#### Make "Unbindable" Properties Bindable
+#### Make Unbindable Properties Bindable
+
+Almost all controls have some properties which can't bind to viewmodels (i.e, they are not dependency property), and it makes harder to manage view status in viewmodel. Livet solves this problem by providing behavior and action that enable one-way binding to these no-dependency properties (except types in System.Windows namespace) as:
+
+- xxxSetStateToSourceAction 
+	- sends value from Control xxx to binding source
+- xxxSetStateToControlBehavior 
+	- sends value from binding source to Control xxx
+	
+Additionaly, for TextBox and PasswordBox, Livet supports two-way binding for unbindable properties by TextBoxBindingSupportBehavior and PasswordBoxBindingSupportBehavior
 
 <!--コントロールのバインドできないプロパティ(依存関係プロパティではないプロパティ)の存在がViewModelでのViewの状態管理を苦しくする事は少なくありません。Livetではすべてのコントロールの、全ての(System.Windowsで始まる型のプロパティは除く)依存関係プロパティではないプロパティの単方向のバインドを可能にするビヘイビアとアクションを提供しています。
 
@@ -81,6 +90,11 @@ xxxSetStateToControlBehavior (バインドソースからxxxコントロール�
 -->
 
 #### Command-Less ViewModel - Direct Method Binding
+
+Why you use ICommand interface to control viewmodel from view ? If you need to abstract view, ICommand is necessary to show a …
+
+
+So usually, there is no mean to use ICommand if you care about MVVM appropriately.
 
 <!--一般的なMVVMのサンプルとされるコードでViewからViewModelに操作を要求したい時にICommandを介するのは何故か？。
 
@@ -156,6 +170,7 @@ DispatcherCollectionは、既存の変更通知コレクションをコンスト
 -->
 
 #### ViewModelHelper.CreateReadOnlyDispatcherCollection&lt;TModel,TViewModel&gt;
+
 
 <!--
 CreateReadOnlyDispatcherCollectionを使用すると、Modelの変更通知コレクションを指定し、そのModelのコレクションの変更と連動するReadOnlyDispatcherCollectionを生成できます。Func<TModel,TViewModel>を指定してTModel型とTViewModel型の相互変換を行います。
