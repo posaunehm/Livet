@@ -84,15 +84,29 @@ Livetではプロジェクトテンプレート・アイテムテンプレート
 
 <h3 id='2_view_support'>2. View Support</h3>
 
-<p>Livet has a very simple principle on view support functions; <em>To Make Unbindable bindable.</em> Thats it.</p>
+<p>Livet has a very simple principle on view support functions; <em>To Make Unbindable bindable.</em> That&#8217;s it.</p>
 
-<p>For view support libraries on XAML platform, not limited in WPF or MVVM, can do only two things; &#8220;expanding or supplementing control functionality&#8221; and &#8220;enabling to add more functions for binding&#8221;. Since Livet is not a control library but a MVVM infrastructure, it&#8217;s very natural focusing the principle, &#8220;To Make Unbindable Bindable&#8221;.</p>
+<p>For view support libraries on XAML platform, not limited in WPF or MVVM, can do only two things; &#8220;expanding or supplementing control functionality&#8221; and &#8220;enabling to add more functions for binding&#8221;. Since Livet is not a control library but a MVVM infrastructure, it&#8217;s very natural focusing the principle &#8220;To Make Unbindable Bindable&#8221;.</p>
 <!--
 Livetの特徴② – View Support
 LivetのViewサポートの方針は簡単です。「バインドで解決できる箇所を増やす」- これのみです。
 
 WPFに限らずMVVMに限らずXAML系プラットフォームの特徴を活かしたViewサポートライブラリに出来る事はもともと基本的に「Viewコントロールの機能の補完」と「バインドで解決できる場所を増やす」のみです。LivetはMVVMインフラストラクチャですから「バインドで解決できる箇所を増やす」に注力するのは至極当然と言えます。-->
-<h4 id='make_unbindable_properties_bindable'>Make &#8220;Unbindable&#8221; Properties Bindable</h4>
+<h4 id='make_unbindable_properties_bindable'>Make Unbindable Properties Bindable</h4>
+
+<p>Almost all controls have some properties which can&#8217;t bind to viewmodels (i.e, they are not dependency property), and it makes harder to manage view status in viewmodel. Livet solves this problem by providing behavior and action that enable one-way binding to these no-dependency properties (except types in System.Windows namespace) as:</p>
+
+<ul>
+<li>
+<p>xxxSetStateToSourceAction - sends value from Control xxx to binding source</p>
+</li>
+
+<li>
+<p>xxxSetStateToControlBehavior - sends value from binding source to Control xxx</p>
+
+<p>Additionaly, for TextBox and PasswordBox, Livet supports two-way binding for unbindable properties by TextBoxBindingSupportBehavior and PasswordBoxBindingSupportBehavior</p>
+</li>
+</ul>
 <!--コントロールのバインドできないプロパティ(依存関係プロパティではないプロパティ)の存在がViewModelでのViewの状態管理を苦しくする事は少なくありません。Livetではすべてのコントロールの、全ての(System.Windowsで始まる型のプロパティは除く)依存関係プロパティではないプロパティの単方向のバインドを可能にするビヘイビアとアクションを提供しています。
 
 xxxSetStateToSourceAction (xxxコントロールからバインドソースへ値を送信)
@@ -106,6 +120,10 @@ xxxSetStateToControlBehavior (バインドソースからxxxコントロール�
 また、TextBoxとPasswordBoxに限っては本来バインドできないプロパティを双方向バインド可能にするビヘイビアを別途用意してあります。(TextBoxBindingSupportBehavior/PasswordBoxBindingSupportBehavior)。
 -->
 <h4 id='commandless_viewmodel__direct_method_binding'>Command-Less ViewModel - Direct Method Binding</h4>
+
+<p>Why you use ICommand interface to control viewmodel from view ? If you need to abstract view, ICommand is necessary to show a …</p>
+
+<p>So usually, there is no mean to use ICommand if you care about MVVM appropriately.</p>
 <!--一般的なMVVMのサンプルとされるコードでViewからViewModelに操作を要求したい時にICommandを介するのは何故か？。
 
 Viewの抽象化要件の上ではICommandはViewModelで意味的な操作の塊を提示するという意義があります。しかし多くの場合Viewの抽象要件は不要です。Viewの抽象化要件がなく、Modelが十分にリッチでViewModelが適切な厚さを持っている場合、ICommandはただメソッドを直接バインドできないがために存在します。

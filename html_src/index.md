@@ -97,8 +97,8 @@ Why you use ICommand interface to control viewmodel from view ? If you need to a
 So usually, there is no mean to use ICommand if you care about MVVM appropriately.
 
 <!--一般的なMVVMのサンプルとされるコードでViewからViewModelに操作を要求したい時にICommandを介するのは何故か？。
-
 Viewの抽象化要件の上ではICommandはViewModelで意味的な操作の塊を提示するという意義があります。しかし多くの場合Viewの抽象要件は不要です。Viewの抽象化要件がなく、Modelが十分にリッチでViewModelが適切な厚さを持っている場合、ICommandはただメソッドを直接バインドできないがために存在します。
+
 
 その状況(つまり多くの状況)でMVVMを適切に考慮すれば、それはむしろICommandを使わない事になるはずです。
 
